@@ -57,7 +57,7 @@ resource "aws_security_group_rule" "allow_server_http_inbound" {
 }
 
 resource "aws_lb" "example" {
-  name               = "${var.cluster_name}-aws_lb"
+  name               = "${var.cluster_name}-aws-lb"
   load_balancer_type = "application"
   subnets            = data.aws_subnet_ids.default.ids
   security_groups    = [aws_security_group.alb.id]
