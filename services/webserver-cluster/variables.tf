@@ -26,10 +26,9 @@ description = "The maximum number of EC2 Instances in the ASG"
 type = number
 }
 
-variable "server_port" {
-  description = "The port the server will use for HTTP requests"
-  type        = number
-  default     = 8080
+variable "enable_autoscaling" {
+  description = "If set to true, enable auto scaling"
+  type        = bool
 }
 
 # # ---------------------------------------------------------------------------------------------------------------------
@@ -47,31 +46,33 @@ variable "server_port" {
 #   type        = string
 # }
 
-# # ---------------------------------------------------------------------------------------------------------------------
-# # OPTIONAL PARAMETERS
-# # These parameters have reasonable defaults.
-# # ---------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+# These parameters have reasonable defaults.
+# ---------------------------------------------------------------------------------------------------------------------
 
-# variable "server_port" {
-#   description = "The port the server will use for HTTP requests"
-#   type        = number
-#   default     = 8080
-# }
+variable "ami" {
+  description = "The AMI to run in the cluster"
+  default     = "ami-0c55b159cbfafe1f0"
+  type        = string
+}
 
-# variable "alb_name" {
-#   description = "The name of the ALB"
-#   type        = string
-#   default     = "terraform-asg-example"
-# }
+variable "server_text" {
+  description = "The text the web server should return"
+  default     = "Hello, World"
+  type        = string
+}
 
-# variable "instance_security_group_name" {
-#   description = "The name of the security group for the EC2 Instances"
-#   type        = string
-#   default     = "terraform-example-instance"
-# }
+variable "custom_tags" {
+  description = "Custom tags to set on the Instances in the ASG"
+  type        = map(string)
+  default     = {}
+}
 
-# variable "alb_security_group_name" {
-#   description = "The name of the security group for the ALB"
-#   type        = string
-#   default     = "terraform-example-alb"
-# }
+variable "server_port" {
+  description = "The port the server will use for HTTP requests"
+  type        = number
+  default     = 8080
+}
+
+
